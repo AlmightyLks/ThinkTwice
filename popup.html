@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6faf7;
+        --fg: #14201a;
+        --muted: #4a5c52;
+        --border: #cfe0d6;
+        --accent: #2a8c5a;
+        --heading: #1d6b46;
+        --badge-warn-bg: #c1272d;
+        --badge-warn-fg: #ffffff;
+        --badge-mixed-bg: #e0a23c;
+        --badge-mixed-fg: #1a1a1a;
+        --badge-hint-bg: #5b85a8;
+        --badge-hint-fg: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #131a16;
+          --fg: #e6efe9;
+          --muted: #a8bbb0;
+          --border: #2c3a32;
+          --accent: #5ed39a;
+          --heading: #8ee0b3;
+          --badge-warn-bg: #d6464b;
+          --badge-warn-fg: #ffffff;
+          --badge-mixed-bg: #d9a13c;
+          --badge-mixed-fg: #1a1a1a;
+          --badge-hint-bg: #7aa3c8;
+          --badge-hint-fg: #0e1714;
+        }
+      }
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        width: 320px; margin: 0; padding: 0;
+        background: var(--bg); color: var(--fg);
+        font-size: 14px; line-height: 1.5;
+      }
+      .header {
+        padding: 16px 16px 0;
+      }
+      .title {
+        font-size: 20px; font-weight: 700; color: var(--heading); margin: 0;
+      }
+      .subtitle {
+        font-size: 12px; color: var(--muted); margin: 2px 0 0;
+      }
+      .divider {
+        height: 1px; background: var(--border); margin: 12px 16px;
+      }
+      .status {
+        padding: 0 16px;
+      }
+      .status-none {
+        padding: 16px; text-align: center; color: var(--muted); font-style: italic;
+      }
+      .badge {
+        display: inline-block; padding: 2px 8px; font-size: 11px; font-weight: 600;
+        border-radius: 10px; letter-spacing: 0.03em;
+      }
+      .badge-warn { background: var(--badge-warn-bg); color: var(--badge-warn-fg); }
+      .badge-mixed { background: var(--badge-mixed-bg); color: var(--badge-mixed-fg); }
+      .badge-hint { background: var(--badge-hint-bg); color: var(--badge-hint-fg); }
+      .outlet-name {
+        font-size: 16px; font-weight: 600; margin: 8px 0 2px;
+      }
+      .outlet-reason {
+        font-size: 13px; color: var(--muted); margin: 0;
+      }
+      .outlet-path {
+        font-size: 11px; color: var(--muted); margin-top: 4px; opacity: 0.75;
+      }
+      .outlet-sources {
+        margin-top: 6px;
+      }
+      .outlet-sources a {
+        display: block; font-size: 11px; color: var(--accent); text-decoration: underline;
+        margin-top: 2px; word-break: break-all;
+      }
+      .toggle-sources {
+        background: none; border: none; font-size: 12px; cursor: pointer;
+        color: var(--muted); text-decoration: underline; padding: 0; margin-top: 6px;
+      }
+      .toggle-sources:hover { color: var(--fg); }
+      .footer {
+        padding: 12px 16px; border-top: 1px solid var(--border); margin-top: 12px;
+      }
+      .footer button {
+        width: 100%; padding: 8px 12px; font-size: 13px; cursor: pointer;
+        background: var(--accent); color: #fff; border: none; border-radius: 6px;
+        font-weight: 600;
+      }
+      .footer button:hover { filter: brightness(1.1); }
+      .loading {
+        text-align: center; padding: 24px; color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <p class="title">ThinkTwice</p>
+      <p class="subtitle">Warnt vor Nachrichtenquellen mit eingeschr&auml;nkter Vertrauensw&uuml;rdigkeit.</p>
+    </div>
+    <div class="divider"></div>
+    <div id="status" class="loading">Lade&hellip;</div>
+    <div class="footer">
+      <button id="open-page">Einstellungen &ouml;ffnen</button>
+    </div>
+    <script src="data.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ThinkTwice: Einstellungen</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6faf7;
+        --fg: #14201a;
+        --muted: #4a5c52;
+        --faint: #7a8c82;
+        --border: #cfe0d6;
+        --border-soft: #e3eee8;
+        --field-bg: #ffffff;
+        --field-border: #b8d2c3;
+        --accent: #2a8c5a;
+        --heading: #1d6b46;
+        --badge-warn-bg: #c1272d;
+        --badge-warn-fg: #ffffff;
+        --badge-mixed-bg: #e0a23c;
+        --badge-mixed-fg: #1a1a1a;
+        --badge-hint-bg: #5b85a8;
+        --badge-hint-fg: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #131a16;
+          --fg: #e6efe9;
+          --muted: #a8bbb0;
+          --faint: #7a8c82;
+          --border: #2c3a32;
+          --border-soft: #1f2a24;
+          --field-bg: #1c2520;
+          --field-border: #3a4d42;
+          --accent: #5ed39a;
+          --heading: #8ee0b3;
+          --badge-warn-bg: #d6464b;
+          --badge-warn-fg: #ffffff;
+          --badge-mixed-bg: #d9a13c;
+          --badge-mixed-fg: #1a1a1a;
+          --badge-hint-bg: #7aa3c8;
+          --badge-hint-fg: #0e1714;
+        }
+      }
+      h1, h2 { color: var(--heading); }
+      body { font-family: sans-serif; max-width: 720px; margin: 48px auto; padding: 0 24px; background: var(--bg); color: var(--fg); }
+      h1 { font-size: 28px; margin-bottom: 24px; }
+      h2 { font-size: 18px; margin-top: 32px; }
+      details.group { margin-top: 8px; }
+      details.group:not(.group-root) { margin-left: 14px; padding-left: 14px; border-left: 2px solid var(--border-soft); }
+      summary.publisher {
+        cursor: pointer;
+        list-style: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        margin: 16px 0 6px;
+        user-select: none;
+        padding: 2px 4px 2px 0;
+        border-radius: 4px;
+        max-width: 100%;
+      }
+      summary.publisher::-webkit-details-marker { display: none; }
+      summary.publisher::before {
+        content: '';
+        display: inline-block;
+        width: 0; height: 0;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 6px solid currentColor;
+        opacity: 0.55;
+        transition: transform 0.15s ease;
+        flex-shrink: 0;
+      }
+      details[open] > summary.publisher::before { transform: rotate(90deg); }
+      summary.publisher:hover { color: var(--heading); }
+      summary.publisher:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .publisher-count {
+        font-size: 10px;
+        font-weight: 600;
+        background: var(--border-soft);
+        color: var(--muted);
+        padding: 1px 6px;
+        border-radius: 8px;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      summary.publisher-depth-0 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--heading); }
+      summary.publisher-depth-1 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+      summary.publisher-depth-2 { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; }
+      summary.publisher-depth-3 { font-size: 11px; font-weight: 500; font-style: italic; }
+      .publisher-edit {
+        font-size: 10px;
+        padding: 2px 6px;
+        margin-left: 4px;
+        opacity: 0;
+        transition: opacity 0.1s;
+        border-radius: 4px;
+        border: 1px solid var(--field-border);
+        background: var(--field-bg);
+        color: var(--muted);
+        cursor: pointer;
+        line-height: 1;
+      }
+      summary.publisher:hover .publisher-edit,
+      summary.publisher:focus-within .publisher-edit { opacity: 1; }
+      .publisher-edit:hover { color: var(--accent); border-color: var(--accent); }
+      .publisher-info {
+        background: var(--border-soft);
+        border-left: 3px solid var(--field-border);
+        border-radius: 0 4px 4px 0;
+        padding: 8px 12px;
+        margin: 4px 0 10px;
+      }
+      .publisher-reason { margin: 0; font-size: 13px; color: var(--muted); font-style: italic; }
+      .sources { margin-top: 6px; font-size: 12px; }
+      .sources-label { color: var(--muted); font-weight: 600; }
+      .sources ul { margin: 2px 0 0 18px; padding: 0; font-family: monospace; }
+      .sources li { word-break: break-all; }
+      .sources a { color: var(--accent); text-decoration: none; }
+      .sources a:hover { text-decoration: underline; }
+      .tabs {
+        display: flex; gap: 2px; margin-top: 32px;
+        border-bottom: 1px solid var(--border);
+      }
+      .tab {
+        background: transparent;
+        border: 1px solid transparent;
+        border-bottom: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: var(--muted);
+        cursor: pointer;
+        border-radius: 6px 6px 0 0;
+        margin: 0 0 -1px 0;
+      }
+      .tab:hover { color: var(--heading); border-color: var(--border-soft) var(--border-soft) transparent; }
+      .tab.active {
+        color: var(--heading);
+        font-weight: 600;
+        background: var(--field-bg);
+        border-color: var(--border) var(--border) var(--field-bg);
+      }
+      .tab-panels fieldset { border-top-left-radius: 0; margin-top: 0; }
+      .tab-panels fieldset[hidden] { display: none; }
+      fieldset { border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+      legend { font-weight: 600; padding: 0 6px; }
+      label { display: block; font-size: 13px; margin-top: 8px; }
+      input[type=text], textarea, select { width: 100%; padding: 6px 8px; font-size: 14px; box-sizing: border-box; margin-top: 4px; background: var(--field-bg); color: var(--fg); border: 1px solid var(--field-border); border-radius: 4px; }
+      textarea { font-family: monospace; font-size: 13px; }
+      button { padding: 6px 12px; font-size: 14px; cursor: pointer; margin-right: 6px; background: var(--field-bg); color: var(--fg); border: 1px solid var(--field-border); border-radius: 4px; }
+      button:hover { border-color: var(--accent); }
+      .entry { border: 1px solid var(--border-soft); border-radius: 6px; padding: 12px; margin-bottom: 8px; }
+      .entry header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+      .entry .title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .entry .name { font-weight: 600; }
+      .entry .reason { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+      .entry ul.prefixes { margin: 6px 0 0 18px; padding: 0; font-size: 12px; color: var(--faint); font-family: monospace; }
+      .badge { display: inline-block; padding: 2px 8px; font-size: 11px; font-weight: 600; border-radius: 10px; letter-spacing: 0.03em; }
+      .badge-warn { background: var(--badge-warn-bg); color: var(--badge-warn-fg); }
+      .badge-mixed { background: var(--badge-mixed-bg); color: var(--badge-mixed-fg); }
+      .badge-hint { background: var(--badge-hint-bg); color: var(--badge-hint-fg); }
+      .empty { color: var(--faint); font-style: italic; }
+      .search {
+        width: 100%; box-sizing: border-box;
+        margin: 8px 0 12px; padding: 8px 12px; font-size: 14px;
+        background: var(--field-bg); color: var(--fg);
+        border: 1px solid var(--field-border); border-radius: 4px;
+      }
+      .search:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+      .actions { margin-top: 12px; }
+      .status { margin-left: 8px; color: var(--accent); font-size: 13px; }
+      .toolbar { float: right; display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+      .toolbar button, .toolbar select {
+        font-size: 12px; padding: 4px 8px; margin: 0; width: auto;
+      }
+      .path-picker {
+        display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+        margin-top: 4px; padding: 6px 8px; min-height: 38px;
+        background: var(--field-bg); color: var(--fg);
+        border: 1px solid var(--field-border); border-radius: 4px;
+      }
+      .path-chip {
+        display: inline-flex; align-items: center; gap: 4px;
+        background: var(--border-soft); color: var(--fg);
+        padding: 3px 4px 3px 10px; border-radius: 12px; font-size: 13px;
+      }
+      .chip-remove {
+        background: none; border: none; color: var(--muted);
+        font-size: 14px; line-height: 1; cursor: pointer; padding: 2px 6px;
+        margin: 0; border-radius: 50%; user-select: none;
+      }
+      .chip-remove:hover { color: var(--badge-warn-bg); background: rgba(0,0,0,0.05); }
+      .path-chip { cursor: default; }
+      .path-sep { color: var(--faint); font-weight: bold; }
+      .path-select {
+        padding: 4px 8px; font-size: 13px; margin: 0; width: auto;
+        background: transparent; color: var(--fg);
+        border: 1px dashed var(--field-border); border-radius: 4px;
+      }
+      .path-select:hover { border-style: solid; border-color: var(--accent); }
+      .path-select option,
+      select option { background: var(--field-bg); color: var(--fg); }
+      .new-level { display: inline-flex; gap: 4px; align-items: center; }
+      .new-level-input {
+        padding: 4px 8px; font-size: 13px; width: 200px; margin: 0;
+        background: var(--field-bg); color: var(--fg);
+        border: 1px solid var(--accent); border-radius: 4px;
+      }
+      .new-level-ok, .new-level-cancel {
+        padding: 4px 10px; font-size: 13px; margin: 0; line-height: 1;
+      }
+      #bottom-actions {
+        margin-top: 24px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+      }
+      #bottom-actions button { font-size: 13px; padding: 8px 16px; }
+    </style>
+  </head>
+  <body>
+    <h1>ThinkTwice</h1>
+    <p>Warnt vor Nachrichtenquellen mit eingeschränkter Vertrauenswürdigkeit.</p>
+
+    <div class="top-actions">
+      <button id="show-form">Neuer Eintrag</button>
+    </div>
+
+    <div id="form-container" hidden>
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" data-tab="outlet" id="tab-outlet">Eintrag hinzufügen</button>
+        <button class="tab" role="tab" data-tab="publisher" id="tab-publisher">Konzern hinzufügen oder bearbeiten</button>
+      </div>
+
+      <div class="tab-panels">
+        <fieldset data-panel="outlet" role="tabpanel" aria-labelledby="tab-outlet">
+          <label>Name
+            <input type="text" id="name" placeholder="z. B. Bild">
+          </label>
+          <label>Konzernpfad
+            <div id="path-picker" class="path-picker"></div>
+          </label>
+          <label>Vertrauensstufe
+            <select id="trust-level">
+              <option value="warn">Warnung: geringe Vertrauenswürdigkeit</option>
+              <option value="mixed" selected>Eingeschränkt: gemischte Qualität</option>
+              <option value="hint">Hinweis: Kontext beachten</option>
+            </select>
+          </label>
+          <label>Begründung
+            <textarea id="reason" rows="2" placeholder="Kurze Begründung der Einstufung"></textarea>
+          </label>
+          <label>Host-Muster (eines pro Zeile)
+            <small style="display:block; color: var(--muted); font-weight: normal; margin-top: 2px;">
+              Exakter Host (<code>www.bild.de</code>) oder Domain-Suffix mit Stern (<code>*bild.de</code>: Apex und alle Subdomains).
+            </small>
+            <textarea id="prefixes" rows="3" placeholder="*bild.de&#10;www.specifichost.de"></textarea>
+          </label>
+          <label>Quellen (eine URL pro Zeile, optional)
+            <textarea id="sources" rows="2" placeholder="https://presserat.de/...&#10;https://de.wikipedia.org/wiki/..."></textarea>
+          </label>
+          <div class="actions">
+            <button id="add">Hinzufügen</button>
+            <button id="cancel-edit" type="button" hidden>Abbrechen</button>
+            <button id="close-form" type="button">Schliessen</button>
+            <span id="status" class="status"></span>
+          </div>
+        </fieldset>
+
+        <fieldset data-panel="publisher" role="tabpanel" aria-labelledby="tab-publisher" hidden>
+          <label>Konzernpfad
+            <div id="publisher-path-picker" class="path-picker"></div>
+          </label>
+          <label>Begründung (optional)
+            <textarea id="publisher-reason" rows="3" placeholder="Hintergrund zum Konzern, Eigentumsverhältnisse, redaktionelle Linie…"></textarea>
+          </label>
+          <label>Quellen (eine URL pro Zeile, optional)
+            <textarea id="publisher-sources" rows="3" placeholder="https://de.wikipedia.org/wiki/...&#10;https://www.medienkonzentration.de/..."></textarea>
+          </label>
+          <div class="actions">
+            <button id="save-publisher">Speichern</button>
+            <button id="clear-publisher" type="button">Felder leeren</button>
+            <button id="close-form-pub" type="button">Schliessen</button>
+            <span id="publisher-status" class="status"></span>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <h2>Bewertete Einträge
+      <span class="toolbar">
+        <select id="sort-by" title="Sortieren nach">
+          <option value="concern">Nach Bedenklichkeit</option>
+          <option value="name">Nach Name</option>
+        </select>
+        <select id="sort-dir" title="Sortierrichtung">
+          <option value="desc">Absteigend</option>
+          <option value="asc">Aufsteigend</option>
+        </select>
+        <button id="toggle-all" title="Alle Gruppen ein-/ausklappen">Alle einklappen</button>
+      </span>
+    </h2>
+    <input type="search" id="search" class="search" placeholder="Suche nach Name, Konzern, URL oder Begründung …">
+    <div id="list"></div>
+
+    <div id="bottom-actions">
+      <button id="update">Standards aktualisieren</button>
+      <button id="reset">Standards wiederherstellen</button>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="page.js"></script>
+  </body>
+</html>
