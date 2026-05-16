@@ -45,7 +45,7 @@ const DEFAULT_OUTLETS = [
     id: 'bild',
     name: 'Bild',
     parents: ['Axel Springer SE', 'Bild-Gruppe'],
-    urlPrefixes: ['bild.de', '*computerbild.de', '*autobild.de'],
+    urlPrefixes: ['bild.de', 'www.bild.de', 'computerbild.de', 'www.computerbild.de', 'autobild.de', 'www.autobild.de'],
     trustLevel: 'warn',
     reason: 'Boulevard- und Verbrauchertitel der Axel Springer SE. Die Bild-Zeitung hat zahlreiche R\u00fcgen des Presserats wegen reisserischer Berichterstattung. Computer Bild und Auto Bild sind stark von Werbeinteressen gepr\u00e4gt.',
     sources: [
@@ -246,7 +246,7 @@ const DEFAULT_OUTLETS = [
     id: 'rt-de',
     name: 'Russia Today',
     parents: ['ANO TV-Novosti'],
-    urlPrefixes: ['rt.com', '*rtde.tv', '*rtde.online', '*rtde.world'],
+    urlPrefixes: ['rt.com', 'www.rt.com', '*rtde.tv', '*rtde.online', '*rtde.world'],
     trustLevel: 'warn',
     reason: 'Deutschsprachiger Ableger des russischen Staatssenders RT; seit März 2022 in der EU sanktioniert und gesperrt.',
     sources: [

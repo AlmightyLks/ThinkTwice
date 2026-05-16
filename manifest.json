@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ThinkTwice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Warnt vor Nachrichtenquellen mit eingeschränkter Vertrauenswürdigkeit.",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
