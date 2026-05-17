@@ -65,7 +65,7 @@ const DEFAULT_OUTLETS = [
     trustLevel: 'warn',
     reason: 'Berliner Boulevardzeitung im Stil der Bild; wiederholt vom Presserat gerügt.',
     sources: [
-      'https://de.wikipedia.org/wiki/B.Z.',
+      'https://de.wikipedia.org/wiki/Berliner_Zeitung',
       'https://www.presserat.de/ruegen-presse-uebersicht.html',
       'https://taz.de/Beschwerden-beim-Presserat/!6157801/',
     ],
@@ -128,7 +128,6 @@ const DEFAULT_OUTLETS = [
     sources: [
       'https://de.wikipedia.org/wiki/Bunte',
       'https://www.presserat.de/ruegen-presse-uebersicht.html',
-      'https://taz.de/Beschwerden-beim-Presserat/!6157801/',
     ],
   },
   {
@@ -144,29 +143,15 @@ const DEFAULT_OUTLETS = [
     ],
   },
   {
-    id: 'closer',
-    name: 'Closer',
-    parents: ['Bauer Media Group'],
-    urlPrefixes: ['*closer.de'],
-    trustLevel: 'warn',
-    reason: 'Promi-Magazin; regelmäßig Rügen des Presserats wegen Falschmeldungen und Persönlichkeitsrechtsverletzungen.',
-    sources: [
-      'https://de.wikipedia.org/wiki/Closer_(Zeitschrift)',
-      'https://www.presserat.de/ruegen-presse-uebersicht.html',
-      'https://taz.de/Beschwerden-beim-Presserat/!6157801/',
-    ],
-  },
-  {
     id: 'intouch',
     name: 'InTouch',
     parents: ['Bauer Media Group'],
-    urlPrefixes: ['*intouch.de', '*intouch.wunderweib.de'],
+    urlPrefixes: ['*intouch.wunderweib.de'],
     trustLevel: 'warn',
     reason: 'Klatschmagazin mit wiederholten Presserats-Rügen.',
     sources: [
       'https://de.wikipedia.org/wiki/InTouch_(Zeitschrift)',
       'https://www.presserat.de/ruegen-presse-uebersicht.html',
-      'https://taz.de/Beschwerden-beim-Presserat/!6157801/',
     ],
   },
   {
@@ -227,7 +212,6 @@ const DEFAULT_OUTLETS = [
     sources: [
       'https://de.wikipedia.org/wiki/Express_(Zeitung)',
       'https://www.presserat.de/ruegen-presse-uebersicht.html',
-      'https://taz.de/Beschwerden-beim-Presserat/!6157801/',
     ],
   },
   {
@@ -246,9 +230,9 @@ const DEFAULT_OUTLETS = [
     id: 'rt-de',
     name: 'Russia Today',
     parents: ['ANO TV-Novosti'],
-    urlPrefixes: ['rt.com', 'www.rt.com', '*rtde.tv', '*rtde.online', '*rtde.world'],
+    urlPrefixes: ['rt.com', 'www.rt.com', '*rtde.online', '*rtde.world'],
     trustLevel: 'warn',
-    reason: 'Deutschsprachiger Ableger des russischen Staatssenders RT; seit März 2022 in der EU sanktioniert und gesperrt.',
+    reason: 'Internationaler russischer Staatssender; verbreitet systematisch russische Regierungspropaganda und Desinformation.',
     sources: [
       'https://de.wikipedia.org/wiki/RT_DE',
       'https://eur-lex.europa.eu/eli/dec/2022/351/oj',
@@ -259,13 +243,13 @@ const DEFAULT_OUTLETS = [
     id: 'sputnik-de',
     name: 'SNA News (vormals Sputnik Deutschland)',
     parents: ['Rossiya Segodnya'],
-    urlPrefixes: ['*snanews.de', '*sputniknews.com'],
+    urlPrefixes: ['*sputniknews.com', '*sputnikglobe.com'],
     trustLevel: 'warn',
     reason: 'Russisches Staatsmedium; seit März 2022 EU-weit sanktioniert.',
     sources: [
-      'https://de.wikipedia.org/wiki/Sputnik_(Nachrichtenagentur)',
+      'https://de.wikipedia.org/wiki/Sputnik_(Nachrichtenportal)',
       'https://eur-lex.europa.eu/eli/dec/2022/351/oj',
-      'https://taz.de/Desinformationskampagne-Russlands/!6034158/',
+      'https://taz.de/Russlands-Medienoffensive-Sputnik/!5028832/',
     ],
   },
   {
@@ -278,7 +262,7 @@ const DEFAULT_OUTLETS = [
     sources: [
       'https://de.wikipedia.org/wiki/The_Epoch_Times',
       'https://de.wikipedia.org/wiki/Falun_Gong',
-      'https://taz.de/!1257248/',
+      'https://www.deutschlandfunk.de/epoch-times-klicks-mit-kritik-an-fluechtlingspolitik-100.html',
     ],
   },
   {
@@ -290,7 +274,7 @@ const DEFAULT_OUTLETS = [
     reason: 'Wochenzeitung der „Neuen Rechten"; jahrelang vom Verfassungsschutz NRW als Verdachtsfall geführt.',
     sources: [
       'https://de.wikipedia.org/wiki/Junge_Freiheit',
-      'https://taz.de/Junge-Freiheit/!t5009714/',
+      'https://www.welt.de/politik/deutschland/article253477496/Prorussische-Narrative-Berliner-Zeitung-Tichys-Einblick-und-Junge-Freiheit-wehren-sich-gegen-Verfassungsschutz.html',
     ],
   },
   {
@@ -328,7 +312,7 @@ const DEFAULT_OUTLETS = [
     reason: 'Islamfeindlicher Blog; vom Bayerischen Verfassungsschutz als rechtsextrem eingestuft.',
     sources: [
       'https://de.wikipedia.org/wiki/PI-News',
-      'https://taz.de/Rechtsextremismus/!t5007723/',
+      'https://www.n-tv.de/politik/Verfassungsschutz-beobachtet-rechten-Blog-article22523277.html',
     ],
   },
   {
@@ -340,7 +324,7 @@ const DEFAULT_OUTLETS = [
     reason: 'Blog von Boris Reitschuster; während der Pandemie mehrfach mit Falschdarstellungen und einseitiger Auswahl auffällig.',
     sources: [
       'https://de.wikipedia.org/wiki/Boris_Reitschuster',
-      'https://taz.de/Diskussion-um-BPK-Mitglied/!5863113/',
+      'https://www.zu.de/newsroom/daily/2025-07-01-zwischen-kritik-und-kampagne-wie-journalistisch-ist-reitschuster.de.php',
     ],
   },
   {
@@ -404,7 +388,7 @@ const DEFAULT_OUTLETS = [
     reason: 'Einer der größten deutschen Verlage für Verschwörungstheorien und Pseudowissenschaft; mehrfach Gegenstand von Gerichtsverfahren.',
     sources: [
       'https://de.wikipedia.org/wiki/Kopp_Verlag',
-      'https://taz.de/Kopp-Verlag/!t5350422/',
+      'https://taz.de/Die-Giftkueche-im-Hinterland/!6005877/',
       'https://www.deutschlandfunkkultur.de/kopp-verlag-aufklaerung-mit-hetze-angst-und-100.html',
     ],
   },
@@ -423,7 +407,7 @@ const DEFAULT_OUTLETS = [
     id: 'freilich',
     name: 'Freilich Magazin',
     parents: ['Selbstverlag / Einzelpublikation'],
-    urlPrefixes: ['*freilich-magazin.de'],
+    urlPrefixes: ['*freilich-magazin.com'],
     trustLevel: 'warn',
     reason: 'Rechtsextremes Online-Magazin aus dem Umfeld der Jungen Freiheit.',
     sources: [
