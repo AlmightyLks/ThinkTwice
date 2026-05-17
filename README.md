@@ -19,6 +19,8 @@ Die Erweiterung ist noch nicht im Chrome Web Store oder Firefox Add-on Store ver
 3. Auf »Entpackte Erweiterung laden« klicken und den Ordner auswählen.
 4. Die Erweiterung sollte nun in der Symbolleiste erscheinen.
 
+Nach einem Update der Extension auf dem Einstellungsseite (Rechtsklick auf das Symbol -> Optionen) unten auf »Standards wiederherstellen« klicken oder im Popup »Standards aktualisieren«, damit die neuen Standardeinträge übernommen werden.
+
 ## Feedback & Vorschläge
 
 Bei Fragen, Ideen oder Problemen bitte ein [GitHub Issue](https://github.com/AlmightyLks/ThinkTwice/issues) öffnen.
